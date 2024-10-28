@@ -1,24 +1,20 @@
 ## Arch Linux Documentation
 
-United States -> mit.edu iso download
-Open VMware Workstation
-On the home page, click "create a new machine"
-Use the downloaded ISO to make the machine
+### Downloading the ISO
+I went to United States on the download page and scrolled to mit.edu iso download. Afterwards, I opened VMware Workstation and on the home page clicked "create a new machine." I used the downloaded ISO to make the machine.
 
-After machine is created, go to the "Edit virtual machine settings" page
+After the machine is created, I went to the "Edit virtual machine settings" page.
 ![alt text](<Screenshot 2024-10-25 131306.png>)
-Ensure that you allocate 2GB of memory and 20GB of HDD space
 
-As I am on a Windows machine, I had to edit the .vmx file to allow it to boot into UEFI mode. To get here, I navigated to files -> documents -> virtual machines -> arch linux.vmx -> open in notepad
-I inserted "firmware="efi"" as the 2nd line.
+Ensure that you allocate 2GB of memory and 20GB of HDD space at this step.
+
+As I am on a Windows machine, I had to edit the .vmx file to allow it to boot into UEFI mode. To get here, I navigated to files -> documents -> virtual machines -> arch linux.vmx -> open in notepad. I inserted "firmware="efi"" as the 2nd line.
 ![alt text](<Pasted image 20241025132549.png>)
 
 I tried to turn on the VM at this point, but I encountered this error:
 ![alt text](<Pasted image 20241025132947.png>)
 
-Moving the firmware="efi" down to line 3 instead of line 2 in the notepad file seemed to fix this error and it allowed the VM to boot as it normally would.
-
-This is the screen that is reached when you officially enter the installation environment:
+Moving the firmware="efi" down to line 3 instead of line 2 in the notepad file seemed to fix this error and it allowed the VM to boot as it normally would. This is the screen that is reached when you officially enter the installation environment:
 ![alt text](<Screenshot 2024-10-23 154936.png>)
 
 I entered the following command to see if it booted in UEFI mode like it was supposed to:
