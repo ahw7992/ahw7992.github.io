@@ -6,7 +6,7 @@ On the home page, click "create a new machine"
 Use the downloaded ISO to make the machine
 
 After machine is created, go to the "Edit virtual machine settings" page
-![[Screenshot 2024-10-25 131306.png]]
+![](Screenshot 2024-10-25 131306.png)
 Ensure that you allocate 2GB of memory and 20GB of HDD space
 
 As I am on a Windows machine, I had to edit the .vmx file to allow it to boot into UEFI mode. To get here, I navigated to files -> documents -> virtual machines -> arch linux.vmx -> open in notepad
