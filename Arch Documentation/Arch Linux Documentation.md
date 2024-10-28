@@ -94,14 +94,19 @@ Finally, I will install GRUB as the bootloader:
 
 Everything appeared to run successfully; I'll implement the DE before I reboot the system.
 I did some research on desktop environments, and I really like how Plasma looks.
+
 `pacman -S xorg-server xorg-apps xorg-xinit`
 - Hit enter to accept the default, then type y to accept
+
 `pacman -S plasma kde-applications`
 - Hit enter to accept the default for all of the inquiries, then type y when prompted
 - It will take a few minutes to install 
+
 `pacman -S sddm`
 - Type y to install
+
 `systemctl enable sddm`
+
 `pacman -S sddm-kcm`
 - Type y to install
 
