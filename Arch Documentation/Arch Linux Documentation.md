@@ -176,7 +176,7 @@ After doing this...I had a lot of problems with root permissions. I switched ove
 
 After messing around with some commands, I eventually just restarted the VM and edited the boot parameters to allow me to enter as a single user in grub. I changed the root password, and then restarted the VM once more. Everything went back to normal after that.
 
-I then used sudo pacman -S vi to see if I could get visudo to work as it should. It did, at last.
+I then used `sudo pacman -S vi` to see if I could get visudo to work as it should. It did, at last.
 
 ![alt text](<Pasted image 20241027182824.png>)
 
