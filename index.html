@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atley Wright - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #f5f1e8;
+            --bg-secondary: #e8e3d6;
+            --text-primary: #3d3d3d;
+            --text-secondary: #6b6b6b;
+            --accent: #7a9b76;
+            --accent-hover: #5f7d5b;
+            --card-bg: #ffffff;
+            --border-color: #d4cfc0;
+            --gradient-start: #8fae8d;
+            --gradient-end: #a47551;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        header {
+            padding: 2rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(245, 241, 232, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        section {
+            padding: 6rem 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero {
+            padding-top: 8rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .btn {
+            padding: 0.875rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(122, 155, 118, 0.3);
+        }
+
+        .btn-secondary {
+            border: 2px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* Documents Section - Featured Cards */
+        .documents-section {
+            margin-bottom: 4rem;
+        }
+
+        .documents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .document-card,
+        .portfolio-item {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .document-card::before,
+        .portfolio-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .document-card:hover::before,
+        .portfolio-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .document-card:hover,
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 15px 40px rgba(122, 155, 118, 0.2);
+        }
+
+        .document-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-item {
+            padding: 2rem;
+        }
+
+        .document-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .document-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .document-card .btn {
+            width: 100%;
+        }
+
+        /* Portfolio Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .portfolio-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 15px 40px rgba(122, 155, 118, 0.2);
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-item h3 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .item-type {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: rgba(122, 155, 118, 0.15);
+            color: var(--accent);
+            border-radius: 4px;
+            font-size: 0.875rem;
+            white-space: nowrap;
+        }
+
+        .portfolio-item p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .item-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .item-links a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .item-links a:hover {
+            color: var(--accent-hover);
+        }
+
+        footer {
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .portfolio-grid,
+            .documents-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .item-header {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Atley Wright</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#documents">Documents</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Hi, I'm Atley Wright</h1>
+            <div class="subtitle">Cyber Security Student</div>
+            <p>Welcome to my portfolio! Here, you'll find my resume and CV, along with some of my work involving software development, reverse engineering, research, and artistic projects.</p>
+            <div class="cta-buttons">
+                <a href="#documents" class="btn btn-primary">View Documents</a>
+                <a href="#portfolio" class="btn btn-secondary">Explore Work</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="documents">
+        <div class="container">
+            <h2 class="section-title">Professional Documents</h2>
+
+            <div class="documents-grid">
+                <div class="document-card">
+                    <h3>Resume</h3>
+                    <a href="documents/resume.pdf" class="btn btn-primary" download>Download PDF</a>
+                </div>
+
+                <div class="document-card">
+                    <h3>Cover Letter</h3>
+                    <a href="documents/cover-letter.pdf" class="btn btn-primary" download>Download PDF</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <div class="container">
+            <h2 class="section-title">Portfolio</h2>
+            <p class="section-subtitle">A selection of my software, research, and artistic work!</p>
+
+            <div class="portfolio-grid">
+                <!-- Software Project 1 -->
+                <div class="portfolio-item">
+                    <div class="item-header">
+                        <h3>Software Project 1</h3>
+                    </div>
+                    <p>description</p>
+                    <div class="item-links">
+                        <a href="#">href for later →</a>
+                    </div>
+                </div>
+
+                <!-- Art Project 1 -->
+                <div class="portfolio-item">
+                    <div class="item-header">
+                        <h3>Art Project 1</h3>
+                    </div>
+                    <p>description</p>
+                    <div class="item-links">
+                        <a href="#">href for later</a>
+                    </div>
+                </div>
+
+                <!-- Writing Assignment 1 -->
+                <div class="portfolio-item">
+                    <div class="item-header">
+                        <h3>Writing Sample 1</h3>
+                    </div>
+                    <p>Academic essay analyzing rights-based and care ethics on reproductive rights.</p>
+                    <div class="item-links">
+                        <a href="#">href...</a>
+                    </div>
+                </div>
+
+                <!-- Software Project 2 -->
+                <div class="portfolio-item">
+                    <div class="item-header">
+                        <h3>Software Project 2</h3>
+                    </div>
+                    <p>description</p>
+                    <div class="item-links">
+                        <a href="#">more href...</a>
+                    </div>
+                </div>
+
+                <!-- Art Project 2 -->
+                <div class="portfolio-item">
+                    <div class="item-header">
+                        <h3>Art Project 2</h3>
+                    </div>
+                    <p>description</p>
+                    <div class="item-links">
+                        <a href="#">href</a>
+                    </div>
+                </div>
+
+                <!-- Writing Assignment 2 -->
+                <div class="portfolio-item">
+                    <div class="item-header">
+                        <h3>Writing Sample 2</h3>
+                    </div>
+                    <p>description</p>
+                    <div class="item-links">
+                        <a href="#">aaaa</a>
+                    </div>
+                </div>
+
+                <!-- Software Project 3 -->
+                <div class="portfolio-item">
+                    <div class="item-header">
+                        <h3>Software Project 3</h3>
+                    </div>
+                    <p>Reverse engineering the game Hollow Knight: Silksong for the purposes of creating game modifications.</p>
+                    <div class="item-links">
+                        <a href="#">href</a>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        let lastScroll = 0;
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+
+            lastScroll = currentScroll;
+        });
+    </script>
+</body>
+</html>
